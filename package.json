@@ -1,0 +1,51 @@
+{
+  "name": "meeteat",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "build": "del public/js/app && webpack --config webpack.config.dev.js --progress --profile --watch"
+  },
+  "dependencies": {
+    "@angular/cli": "^1.6.1",
+    "@angular/common": "~4.3.4",
+    "@angular/compiler": "~4.3.4",
+    "@angular/core": "~4.3.4",
+    "@angular/forms": "~4.3.4",
+    "@angular/http": "~4.3.4",
+    "@angular/platform-browser": "~4.3.4",
+    "@angular/platform-browser-dynamic": "~4.3.4",
+    "@angular/router": "~4.3.4",
+    "@types/handlebars": "4.0.33",
+    "body-parser": "~1.18.2",
+    "codelyzer": "~2.1.1",
+    "cookie-parser": "~1.4.3",
+    "core-js": "^2.5.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "hbs": "~4.0.1",
+    "mongoose-unique-validator": "^1.0.6",
+    "morgan": "~1.9.0",
+    "rxjs": "^5.5.5",
+    "serve-favicon": "~2.4.5",
+    "tslint": "^4.5.1",
+    "tslint-loader": "^3.4.3",
+    "typedoc": "^0.5.1",
+    "typescript": "~2.2.2",
+    "zone.js": "^0.8.18"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.43",
+    "@types/node": "^8.5.1",
+    "angular2-router-loader": "^0.3.5",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.4.1",
+    "del-cli": "^1.1.0",
+    "html-loader": "^0.5.1",
+    "mongoose": "^4.13.7",
+    "raw-loader": "^0.5.1",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0",
+    "webpack-merge": "^4.1.1"
+  }
+}
