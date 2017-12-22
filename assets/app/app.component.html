@@ -3,9 +3,9 @@
         <h1>Bienvenue sur Meeteat !</h1>
     </div>
     <span>
-        <add-user></add-user>
-        <add-lunch></add-lunch>
+        <add-user>add user</add-user>
+        <add-lunch>add lunch</add-lunch>
     </span>
     Voici la liste des repas disponibles:
-    <all-lunches>Chargement...</all-lunches>
+    <all-lunches *ngFor="let lunch of lunches">list lunch</all-lunches>
 </div>
