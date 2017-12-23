@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
     location: {type: String, required: true},
     userHost: {type: Schema.Types.ObjectId, ref: 'User', required: true},
-    remainingPlaces: {type: int, required: true},
+    remainingPlaces: {type: Number, required: true},
     guests: [{type: Schema.Types.ObjectId, ref: 'User'}]
 },{collection: 'lunches'});
 
