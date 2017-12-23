@@ -8,19 +8,22 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
     styleUrls:['./add-lunch.component.css']
 })
 export class AddLunchComponent implements OnInit{
-    locationPosition: Position;
+    geoLocation: Position;
     latitude: number;
     longitude: number;
     zoom: number = 15;
-    myForm: FormGroup;
+    myLunchForm: FormGroup;
+    locationName: String;
+    numberGuests: number;
+    locationSet: boolean = false;
 
     ngOnInit(){
         if(window.navigator.geolocation){
             window.navigator.geolocation.getCurrentPosition(
                 position => {
-                this.locationPosition = position,
-                    this.latitude = this.locationPosition.coords.latitude,
-                    this.longitude = this.locationPosition.coords.longitude
+                this.geoLocation = position,
+                    this.latitude = this.geoLocation.coords.latitude,
+                    this.longitude = this.geoLocation.coords.longitude
             },
                 error => {
                     switch (error.code) {
@@ -38,17 +41,22 @@ export class AddLunchComponent implements OnInit{
             );
         };
 
-        this.myForm = new FormGroup({
-            firstName: new FormControl(null, Validators.required),
-            lastName: new FormControl(null, Validators.required),
-            email: new FormControl(null, [Validators.required, Validators.email]),
-            password: new FormControl(null, Validators.required),
+        this.myLunchForm = new FormGroup({
+            geoLocation: new FormControl(null),
+            locationName: new FormControl(null, Validators.required),
+            numberGuests: new FormControl(null, Validators.required)
             
         });
         
     }
 
+    onSubmit(){
+        console.log(this.myLunchForm);
+        this.myLunchForm.reset();
+    }
+
     markerDragEnd(m: marker, $event: any) {
+        this.locationSet = true;
         console.log($event);
         this.latitude = $event.coords.lat;
         this.longitude = $event.coords.lng;

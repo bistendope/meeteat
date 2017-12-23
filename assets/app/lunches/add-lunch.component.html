@@ -3,11 +3,11 @@
         <h2 class="panel-title">Ajouter un repas</h2>
     </div>
     <div class="panel-body">
-        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="myLunchForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-                        
-        <agm-map class="form-control" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <agm-marker 
+        <label for="geoLocation">Positionnez le marqueur à l'endroit ou vous désirez déjeuner</label>                
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" id="geoLocation" >
+                <agm-marker  
                 [latitude]="latitude" 
                 [longitude]="longitude" 
                 [markerDraggable]="true" 
