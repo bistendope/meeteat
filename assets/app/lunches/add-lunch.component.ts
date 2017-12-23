@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
     selector:'add-lunch',
@@ -10,7 +11,8 @@ export class AddLunchComponent implements OnInit{
     locationPosition: Position;
     latitude: number;
     longitude: number;
-    zoom: number = 14;
+    zoom: number = 15;
+    myForm: FormGroup;
 
     ngOnInit(){
         if(window.navigator.geolocation){
@@ -35,9 +37,18 @@ export class AddLunchComponent implements OnInit{
                 }
             );
         };
+
+        this.myForm = new FormGroup({
+            firstName: new FormControl(null, Validators.required),
+            lastName: new FormControl(null, Validators.required),
+            email: new FormControl(null, [Validators.required, Validators.email]),
+            password: new FormControl(null, Validators.required),
+            
+        });
+        
     }
 
-    markerDragEnd(m: marker, $event: MouseEvent) {
+    markerDragEnd(m: marker, $event: any) {
         console.log($event);
         this.latitude = $event.coords.lat;
         this.longitude = $event.coords.lng;

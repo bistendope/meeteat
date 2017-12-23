@@ -14,6 +14,8 @@ import { LunchesComponent } from "./lunches/lunches.component";
 import { routing } from "./app.routing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AgmCoreModule } from "@agm/core";
+import { SearchUserComponent } from "./auth/search-user.component";
+import { SearchLunchComponent } from "./lunches/search-lunch.component";
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { AgmCoreModule } from "@agm/core";
         LogoutComponent,
         AuthenticationComponent,
         HeaderComponent,
-        LunchesComponent
+        LunchesComponent,
+        SearchLunchComponent,
+        SearchUserComponent
     ],
     imports: [
         BrowserModule, 

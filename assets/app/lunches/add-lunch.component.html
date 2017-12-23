@@ -1,10 +1,27 @@
-<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-        <agm-marker 
-        [latitude]="latitude" 
-        [longitude]="longitude" 
-        [markerDraggable]="true" 
-        (dragEnd)="markerDragEnd(m, $event)">
+<div class="panel panel-primary col-md-8 col-md-offset-2">
+    <div class="panel-heading">
+        <h2 class="panel-title">Ajouter un repas</h2>
+    </div>
+    <div class="panel-body">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+                        
+        <agm-map class="form-control" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker 
+                [latitude]="latitude" 
+                [longitude]="longitude" 
+                [markerDraggable]="true" 
+                (dragEnd)="markerDragEnd(m, $event)">
+                </agm-marker>
+        </agm-map>
+        <label for="locationName">Nom de l'endroit</label>
+        <input formControlName="locationName" type="text" id="locationName" class="form-control">
         
+        <label for="numberGuests">Nombres de convives souhaités</label>
+        <input type="number" min="1" max="10" step="1" value="1" class="form-control" formControlName="numberGuests" id="numberGuests">
         
-        </agm-marker>
-</agm-map>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Envoyer</button>
+    </form>
+    </div>
+</div>

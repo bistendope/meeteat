@@ -1,3 +1,12 @@
-<div class="col-md-10">
-    <add-lunch></add-lunch>
+<header class="row spacing">
+    <nav class="col-md-8 col-md-offset-2">
+        <ul class="nav nav-tabs">
+            <li routerLinkActive="active"><a [routerLink]="['addlunch']">Proposer un repas</a></li>
+            <li routerLinkActive="active"><a [routerLink]="['searchlunch']">Chercher un repas</a></li>
+            <li routerLinkActive="active"><a [routerLink]="['searchuser']">Chercher un convive</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="row spacing">
+        <router-outlet></router-outlet>
 </div>
