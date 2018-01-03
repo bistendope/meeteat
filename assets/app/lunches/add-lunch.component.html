@@ -11,17 +11,18 @@
                 [latitude]="latitude" 
                 [longitude]="longitude" 
                 [markerDraggable]="true" 
-                (dragEnd)="markerDragEnd(m, $event)">
+                (dragEnd)="markerDragEnd(m, $event)"
+                ngDefaultControl>
                 </agm-marker>
         </agm-map>
         <label for="locationName">Nom de l'endroit</label>
-        <input formControlName="locationName" type="text" id="locationName" class="form-control">
+        <input formControlName="locationName" type="text" id="locationName" class="form-control" required>
         
         <label for="numberGuests">Nombres de convives souhaités</label>
-        <input type="number" min="1" max="10" step="1" value="1" class="form-control" formControlName="numberGuests" id="numberGuests">
+        <input type="text" class="form-control" formControlName="numberGuests" id="numberGuests" required>
         
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Envoyer</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!myLunchForm.valid">Envoyer</button>
     </form>
     </div>
 </div>

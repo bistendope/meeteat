@@ -14,7 +14,7 @@ export class AddLunchComponent implements OnInit{
     zoom: number = 15;
     myLunchForm: FormGroup;
     locationName: String;
-    numberGuests: number;
+    numberGuests: String;
     locationSet: boolean = false;
 
     ngOnInit(){
@@ -52,11 +52,12 @@ export class AddLunchComponent implements OnInit{
 
     onSubmit(){
         console.log(this.myLunchForm);
+        console.log(this.myLunchForm.value);
+        console.log(this.myLunchForm.status);
         this.myLunchForm.reset();
     }
 
     markerDragEnd(m: marker, $event: any) {
-        this.locationSet = true;
         console.log($event);
         this.latitude = $event.coords.lat;
         this.longitude = $event.coords.lng;
