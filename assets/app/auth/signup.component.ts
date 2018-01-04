@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import { AuthService } from "./auth.service";
 import { User } from "./user.model";
+import { NotificationsService } from "angular2-notifications";
 
 @Component({
     selector:'signup',
@@ -10,7 +11,7 @@ import { User } from "./user.model";
 export class SignupComponent implements OnInit{
     mySignupForm: FormGroup;
 
-    constructor(private authService: AuthService){
+    constructor(private authService: AuthService, private _service: NotificationsService){
         
     }
 
@@ -21,7 +22,12 @@ export class SignupComponent implements OnInit{
             this.mySignupForm.value.password,
             this.mySignupForm.value.email
         );
-        this.authService.signup(user).subscribe(data => console.log(data), error => console.error(error));
+        this.authService.signup(user).subscribe(
+            data => this._service.success('Félicitations !', 'Vous êtes correctement inscrit '), 
+        error => {
+            console.error(error);
+            this._service.error('Aïe !', "Une erreur est survenue pendant l'inscription.");
+        });
         this.mySignupForm.reset();
     }
 

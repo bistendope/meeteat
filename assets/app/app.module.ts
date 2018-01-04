@@ -18,6 +18,8 @@ import { SearchUserComponent } from "./auth/search-user.component";
 import { SearchLunchComponent } from "./lunches/search-lunch.component";
 import { AuthModule } from "angular2-auth";
 import { AuthService } from "./auth/auth.service";
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -43,7 +45,9 @@ import { AuthService } from "./auth/auth.service";
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAf7dPFv5psIncDlBdSewfaqGz3db7s-yQ'
           }),
-        AuthModule.forRoot()],
+        AuthModule.forRoot(),
+        BrowserAnimationsModule,
+        SimpleNotificationsModule.forRoot()],
         providers: [AuthService],
     bootstrap: [AppComponent]
 })

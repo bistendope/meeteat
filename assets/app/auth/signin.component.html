@@ -1,5 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="mySigninForm" (ngSubmit)="onSubmit()">
             <div class="form-group"> 
                 <label for="email">Adresse mail</label>
                 <input formControlName="email" type="email" id="email" class="form-control">
@@ -7,6 +7,6 @@
                 <label for="password">Mot de passe</label>
                 <input formControlName="password" type="password" id="password" class="form-control">
             </div>
-            <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Envoyer</button>
+            <button class="btn btn-primary" type="submit" [disabled]="!mySigninForm.valid">Envoyer</button>
         </form>
     </div>

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
-var lunchesRoutes = require('./routes/lunches');
+var lunchesRoutes = require('./routes/lunch');
 var userRoutes = require('./routes/user');
 
 
