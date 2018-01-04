@@ -10,6 +10,7 @@ var appRoutes = require('./routes/app');
 var lunchesRoutes = require('./routes/lunches');
 var userRoutes = require('./routes/user');
 
+
 var app = express();
 mongoose.connect('localhost:27017/meeteat');
 
@@ -32,8 +33,8 @@ app.use(function(req, res, next){
   next();
 })
 
-//app.use('/user', userRoutes); //a l'air de faire bugger le site pour l'instant, à remettre quand nécessaire
-app.use('/lunches', lunchesRoutes);
+app.use('/user', userRoutes); //a l'air de faire bugger le site pour l'instant, à remettre quand nécessaire
+app.use('/lunch', lunchesRoutes);
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler

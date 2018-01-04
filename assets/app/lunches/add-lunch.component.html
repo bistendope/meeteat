@@ -5,14 +5,14 @@
     <div class="panel-body">
         <form [formGroup]="myLunchForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-        <label for="geoLocation">Positionnez le marqueur à l'endroit ou vous désirez déjeuner</label>                
+        <label for="geoLocation">Positionnez le marqueur à l'endroit ou vous désirez déjeuner<br/>Si vous êtes déjà physiquement à l'endroit souhaité, pas besoin de le bouger !</label>                
         <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" id="geoLocation" >
                 <agm-marker  
                 [latitude]="latitude" 
                 [longitude]="longitude" 
                 [markerDraggable]="true" 
                 (dragEnd)="markerDragEnd(m, $event)"
-                ngDefaultControl>
+                >
                 </agm-marker>
         </agm-map>
         <label for="locationName">Nom de l'endroit</label>

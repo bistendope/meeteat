@@ -18,6 +18,8 @@
     "@angular/platform-browser-dynamic": "~4.3.4",
     "@angular/router": "~4.3.4",
     "@types/handlebars": "4.0.33",
+    "angular2-auth": "^0.1.7",
+    "bcryptjs": "^2.4.3",
     "body-parser": "~1.18.2",
     "codelyzer": "~2.1.1",
     "cookie-parser": "~1.4.3",

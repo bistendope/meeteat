@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AgmCoreModule } from "@agm/core";
 import { SearchUserComponent } from "./auth/search-user.component";
 import { SearchLunchComponent } from "./lunches/search-lunch.component";
+import { AuthModule } from "angular2-auth";
+import { AuthService } from "./auth/auth.service";
 
 @NgModule({
     declarations: [
@@ -40,7 +42,9 @@ import { SearchLunchComponent } from "./lunches/search-lunch.component";
         ReactiveFormsModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAf7dPFv5psIncDlBdSewfaqGz3db7s-yQ'
-          })],
+          }),
+        AuthModule.forRoot()],
+        providers: [AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule{
