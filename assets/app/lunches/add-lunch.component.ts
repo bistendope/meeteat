@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Lunch } from "./lunch.model";
+import { LunchService } from "./lunch.service";
+import { NotificationsService } from "angular2-notifications";
 
 @Component({
     selector:'add-lunch',
@@ -8,7 +11,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
     styleUrls:['./add-lunch.component.css']
 })
 export class AddLunchComponent implements OnInit{
-    geoLocation: Position;
+
+    constructor(private lunchService: LunchService, private _service: NotificationsService){}
     latitude: number;
     longitude: number;
     zoom: number = 15;
@@ -21,9 +25,8 @@ export class AddLunchComponent implements OnInit{
         if(window.navigator.geolocation){
             window.navigator.geolocation.getCurrentPosition(
                 position => {
-                this.geoLocation = position,
-                    this.latitude = this.geoLocation.coords.latitude,
-                    this.longitude = this.geoLocation.coords.longitude
+                    this.latitude = position.coords.latitude,
+                    this.longitude = position.coords.longitude
             },
                 error => {
                     switch (error.code) {
@@ -42,7 +45,6 @@ export class AddLunchComponent implements OnInit{
         };
 
         this.myLunchForm = new FormGroup({
-            geoLocation: new FormControl(null),
             locationName: new FormControl(null, Validators.required),
             numberGuests: new FormControl(null, Validators.required)
             
@@ -51,9 +53,20 @@ export class AddLunchComponent implements OnInit{
     }
 
     onSubmit(){
-        console.log(this.myLunchForm);
-        console.log(this.myLunchForm.value);
-        console.log(this.myLunchForm.status);
+        const lunch = new Lunch (
+            this.latitude,
+            this.longitude,
+            this.myLunchForm.value.locationName,
+            'testNom',
+            this.myLunchForm.value.numberGuests
+            
+        );
+        this.lunchService.addLunch(lunch).subscribe(
+            data => this._service.success('Miam !', 'Votre repas a été correctement ajouté '), 
+        error => {
+            console.error(error);
+            this._service.error('Aïe !', "Une erreur est survenue à l'ajout du repas.");
+        });
         this.myLunchForm.reset();
     }
 

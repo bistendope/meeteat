@@ -1,3 +1,7 @@
-<span>
-        <display-user></display-user>
-</span>
+<li class="list-group-item">
+                <label class="label label-primary" for="locationName">Description du lieu </label>
+                <span id="locationName">{{lunch.locationName}} </span>
+                <label class="label label-primary" for="userHost">Nom de l'hôte </label>
+                <span id="userHost">{{lunch.userHost}} </span>
+                <span *ngIf="distance !==null" class="badge" id="distance">{{distance}} km lat: {{latitude}}, long: {{longitude}} </span>
+</li>

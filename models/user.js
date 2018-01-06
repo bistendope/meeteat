@@ -3,6 +3,8 @@ var Schema = mongoose.Schema;
 var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var schema = new Schema({
+    latitude: {type: Number},
+    longitude: {type: Number},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     password: {type: String, required: true},

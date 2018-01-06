@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 var secretKey = 'MKhmKx5JYbf6Fb8AmviVDJZUNQMXmrrJ'
 var User = require('../models/user');
 
-/* GET home page. */
+
 router.post('/', function(req, res, next) {
   var user =  new User({
     firstName: req.body.firstName,

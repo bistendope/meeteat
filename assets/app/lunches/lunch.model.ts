@@ -2,9 +2,11 @@ import { User } from "../auth/user.model";
 
 export class Lunch {
     constructor(
-        public location: Coordinates, 
-        public userhost: string,
+        public latitude: number,
+        public longitude: number,
+        public locationName: string, 
+        public userHost: string,
         public remainingPlaces: number,
-        public guests: User[]
+        public guests?: User[]
     ){}
 }

@@ -15,11 +15,12 @@ import { routing } from "./app.routing";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AgmCoreModule } from "@agm/core";
 import { SearchUserComponent } from "./auth/search-user.component";
-import { SearchLunchComponent } from "./lunches/search-lunch.component";
 import { AuthModule } from "angular2-auth";
 import { AuthService } from "./auth/auth.service";
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LunchService } from "./lunches/lunch.service";
+import { HaversineService } from "ng2-haversine";
 
 @NgModule({
     declarations: [
@@ -34,7 +35,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AuthenticationComponent,
         HeaderComponent,
         LunchesComponent,
-        SearchLunchComponent,
         SearchUserComponent
     ],
     imports: [
@@ -48,7 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AuthModule.forRoot(),
         BrowserAnimationsModule,
         SimpleNotificationsModule.forRoot()],
-        providers: [AuthService],
+    providers: [AuthService, LunchService, HaversineService],
     bootstrap: [AppComponent]
 })
 export class AppModule{

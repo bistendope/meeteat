@@ -33,11 +33,11 @@ app.use(function(req, res, next){
   next();
 })
 
-app.use('/user', userRoutes); //a l'air de faire bugger le site pour l'instant, à remettre quand nécessaire
+app.use('/user', userRoutes); 
 app.use('/lunch', lunchesRoutes);
 app.use('/', appRoutes);
 
-// catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   res.render('index');
 });
