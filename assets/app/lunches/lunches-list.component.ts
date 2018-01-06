@@ -8,7 +8,7 @@ import { NotificationsService } from "angular2-notifications";
     template: `
 <span>
     <ul class="list-group">
-    <display-lunch [myLatitude]="latitude" [myLongitude]="longitude" [lunch]="lunch" *ngFor="let lunch of lunches"></display-lunch>
+    <display-lunch [(myLatitude)]="latitude" [(myLongitude)]="longitude" [lunch]="lunch" *ngFor="let lunch of lunches"></display-lunch>
     </ul>
 </span>
 `

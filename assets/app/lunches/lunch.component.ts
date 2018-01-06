@@ -12,16 +12,14 @@ export class LunchComponent implements OnInit{
     @Input() lunch: Lunch; 
     @Input() myLatitude: number;
     @Input() myLongitude: number;
-    distance: number;
+
+    getDistance(){
+        let coord1: GeoCoord = { latitude: this.myLatitude, longitude: this.myLongitude};
+        let coord2: GeoCoord = { latitude: this.lunch.latitude, longitude: this.lunch.longitude};
+        return this.haversineService.getDistanceInKilometers(coord1, coord2);
+    }
 
     ngOnInit(){
-        if (this.myLatitude == null || this.myLongitude == null){
-            this.distance = null;
-            console.log("lunch", this.myLatitude, this.myLongitude);
-        }else{
-            let coord1: GeoCoord = { latitude: this.myLatitude, longitude: this.myLongitude};
-            let coord2: GeoCoord = { latitude: this.lunch.latitude, longitude: this.lunch.longitude};
-            this.distance = this.haversineService.getDistanceInKilometers(coord1, coord2);
-        }
+            
     }
 }
