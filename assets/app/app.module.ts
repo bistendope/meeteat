@@ -21,6 +21,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LunchService } from "./lunches/lunch.service";
 import { HaversineService } from "ng2-haversine";
+import { RoundPipe } from "./round.pipe";
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { HaversineService } from "ng2-haversine";
         AuthenticationComponent,
         HeaderComponent,
         LunchesComponent,
-        SearchUserComponent
+        SearchUserComponent,
+        RoundPipe
     ],
     imports: [
         BrowserModule, 
