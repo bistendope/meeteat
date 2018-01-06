@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-var secretKey = 'MKhmKx5JYbf6Fb8AmviVDJZUNQMXmrrJ'
+var secretKey = 'MKhmKx5JYbf6Fb8AmviVDJZUNQMXmrrJ';
 var User = require('../models/user');
 
 
@@ -47,7 +47,7 @@ router.post('/signin', function(req, res, next){
                 error: {message: 'Identifiants invalides'}
             });
         }
-        var token = jwt.sign({user: user}, secretKey, {expiresIn: 7200});
+        var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
         res.status(200).json({
             message: 'Identification réussie !',
             token: token,

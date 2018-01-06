@@ -5,8 +5,8 @@ export class Lunch {
         public latitude: number,
         public longitude: number,
         public locationName: string, 
-        public userHost: string,
         public remainingPlaces: number,
+        public userHost?: string,
         public distance?: number,
         public guests?: User[]
     ){}

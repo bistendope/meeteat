@@ -4,14 +4,17 @@ import 'rxjs/Rx';
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 
+
 @Injectable()
 export class LunchService{
     private lunches: Lunch[] = [];
     constructor(private http: Http){}
+
     addLunch(lunch:Lunch){
         const body = JSON.stringify(lunch);
         const headers = new Headers({'Content-Type':'application/json'});
-        return this.http.post("http://localhost:3000/lunch", body, {headers: headers})
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token'):''; // à copier pour tous les endroits ou on veut envoyer un token dans la requete
+        return this.http.post("http://localhost:3000/lunch" + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -26,8 +29,8 @@ export class LunchService{
                         lunch.latitude,
                         lunch.longitude,
                         lunch.locationName,
-                        'testNom',
-                        lunch.remainingPlaces
+                        lunch.remainingPlaces,
+                        lunch.userHostName
                     ));
                 }
                 this.lunches = transformedLunches;

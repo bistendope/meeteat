@@ -8,8 +8,14 @@ import 'rxjs/Rx';
 @Component({
     selector:'all-lunches',
     template: `
-<button type="button" class="btn btn-primary" (click)="onSortByDistance()">Trier par distance</button>
-<button type="button" class="btn btn-primary" (click)="onSortByRemainingPlaces()">Trier par nombre de places restantes</button>
+<button type="button" class="btn btn-primary" (click)="onSortByDistance()">Trier par distance 
+    <span *ngIf="alreadySortedDistance" class="glyphicon glyphicon-chevron-down"></span>
+    <span *ngIf="alreadySortedDistance == false" class="glyphicon glyphicon-chevron-up"></span>
+</button>
+<button type="button" class="btn btn-primary" (click)="onSortByRemainingPlaces()">Trier par nombre de places restantes
+    <span *ngIf="alreadySortedRemainingPlaces" class="glyphicon glyphicon-chevron-down"></span>
+    <span *ngIf="alreadySortedRemainingPlaces == false" class="glyphicon glyphicon-chevron-up"></span>
+</button>
 <div>
     <ul class="list-group">
     <display-lunch  [lunch]="lunch" *ngFor="let lunch of lunches"></display-lunch>
@@ -22,8 +28,8 @@ export class ListLunchesComponent implements OnInit{
     lunches: Lunch[];
     myLatitude: number;
     myLongitude: number;
-    alreadySortedRemainingPlaces = false;
-    alreadySortedDistance = false;
+    alreadySortedRemainingPlaces: boolean = null;
+    alreadySortedDistance: boolean = null;
 
     constructor(private lunchService: LunchService, private _service: NotificationsService, private haversineService: HaversineService){}
 
@@ -39,9 +45,11 @@ export class ListLunchesComponent implements OnInit{
         if(!this.alreadySortedDistance){
             order = 1;
             this.alreadySortedDistance = true;
+            this.alreadySortedRemainingPlaces = null;
         }else{
             order = -1;
             this.alreadySortedDistance = false;
+            this.alreadySortedRemainingPlaces = null;
         }
         this.lunches.sort((nearLunch,farLunch): number => {
             if (nearLunch.distance < farLunch.distance) return -order;
@@ -53,9 +61,11 @@ export class ListLunchesComponent implements OnInit{
         if(!this.alreadySortedRemainingPlaces){
             order = 1;
             this.alreadySortedRemainingPlaces = true;
+            this.alreadySortedDistance = null;
         }else{
             order = -1;
             this.alreadySortedRemainingPlaces = false;
+            this.alreadySortedDistance = null;
         }
         this.lunches.sort((lessPlaces,morePlaces): number => {
             if (lessPlaces.remainingPlaces < morePlaces.remainingPlaces) return -order;

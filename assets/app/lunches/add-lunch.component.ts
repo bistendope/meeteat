@@ -57,25 +57,25 @@ export class AddLunchComponent implements OnInit{
             this.latitude,
             this.longitude,
             this.myLunchForm.value.locationName,
-            'testNom',
             this.myLunchForm.value.numberGuests
             
         );
         this.lunchService.addLunch(lunch).subscribe(
-            data => this._service.success('Miam !', 'Votre repas a été correctement ajouté '), 
-        error => {
-            console.error(error);
-            this._service.error('Aïe !', "Une erreur est survenue à l'ajout du repas.");
-        });
+            data => {
+                this._service.success('Miam !', 'Votre repas a été correctement ajouté ');
+                console.log(data);
+            },
+            error => {
+                console.error(error);
+                this._service.error('Aïe !', "Une erreur est survenue à l'ajout du repas.");
+            }
+        );
         this.myLunchForm.reset();
     }
 
     markerDragEnd(m: marker, $event: any) {
-        console.log($event);
         this.latitude = $event.coords.lat;
         this.longitude = $event.coords.lng;
-        console.log(this.latitude);
-        console.log(this.longitude);
     }
 }
 
