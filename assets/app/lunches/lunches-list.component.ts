@@ -9,6 +9,7 @@ import 'rxjs/Rx';
     selector:'all-lunches',
     template: `
 <button type="button" class="btn btn-primary" (click)="onSortByDistance()">Trier par distance</button>
+<button type="button" class="btn btn-primary" (click)="onSortByRemainingPlaces()">Trier par nombre de places restantes</button>
 <div>
     <ul class="list-group">
     <display-lunch  [lunch]="lunch" *ngFor="let lunch of lunches"></display-lunch>
@@ -21,6 +22,8 @@ export class ListLunchesComponent implements OnInit{
     lunches: Lunch[];
     myLatitude: number;
     myLongitude: number;
+    alreadySortedRemainingPlaces = false;
+    alreadySortedDistance = false;
 
     constructor(private lunchService: LunchService, private _service: NotificationsService, private haversineService: HaversineService){}
 
@@ -32,9 +35,31 @@ export class ListLunchesComponent implements OnInit{
     }
 
     onSortByDistance(){
+        var order;
+        if(!this.alreadySortedDistance){
+            order = 1;
+            this.alreadySortedDistance = true;
+        }else{
+            order = -1;
+            this.alreadySortedDistance = false;
+        }
         this.lunches.sort((nearLunch,farLunch): number => {
-            if (nearLunch.distance < farLunch.distance) return -1;
-            if (nearLunch.distance > farLunch.distance) return 1;
+            if (nearLunch.distance < farLunch.distance) return -order;
+            if (nearLunch.distance > farLunch.distance) return order;
+        })
+    }
+    onSortByRemainingPlaces(){
+        var order;
+        if(!this.alreadySortedRemainingPlaces){
+            order = 1;
+            this.alreadySortedRemainingPlaces = true;
+        }else{
+            order = -1;
+            this.alreadySortedRemainingPlaces = false;
+        }
+        this.lunches.sort((lessPlaces,morePlaces): number => {
+            if (lessPlaces.remainingPlaces < morePlaces.remainingPlaces) return -order;
+            if (lessPlaces.remainingPlaces > morePlaces.remainingPlaces) return order;
         })
     }
 
