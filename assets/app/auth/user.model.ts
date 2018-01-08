@@ -3,6 +3,9 @@ export class User {
         public firstName: string, 
         public lastName: string,
         public password: string, 
-        public email: string
+        public email: string,
+        public latitude?: number,
+        public longitude?: number,
+        public distance?: number
     ){}
 }

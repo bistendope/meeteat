@@ -10,7 +10,8 @@ var schema = new Schema({
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
     lunches: [{type: Schema.Types.ObjectId, ref: 'Lunch'}]
-});
+},
+{ usePushEach: true });
 
 schema.plugin(mongooseUniqueValidator);
 

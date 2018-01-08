@@ -8,6 +8,7 @@ var Lunch = require('../models/lunch');
 
 router.get('/', function(req, res, next){
     Lunch.find()
+    .populate('userHost')
         .exec(function(err, lunches){
             if(err){
                 return res.status(500).json({
@@ -59,7 +60,7 @@ router.post('/', function(req, res, next){
                     error: err
                 });
             }
-            user.lunches.push(result);
+            user.lunches.push(result._id);
             user.save();
             
             res.status(201).json({
@@ -69,6 +70,6 @@ router.post('/', function(req, res, next){
         });
     });
     
-})
+});
 
 module.exports = router;

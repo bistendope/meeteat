@@ -23,6 +23,7 @@ export class LunchService{
         return this.http.get('http://localhost:3000/lunch')
             .map((response: Response) => {
                 const lunches = response.json().obj;
+                console.log("lunches", lunches);
                 let transformedLunches: Lunch[] = [];
                 for (let lunch of lunches){
                     transformedLunches.push(new Lunch(
@@ -30,10 +31,11 @@ export class LunchService{
                         lunch.longitude,
                         lunch.locationName,
                         lunch.remainingPlaces,
-                        lunch.userHostName
+                        lunch.userHost.firstName
                     ));
                 }
                 this.lunches = transformedLunches;
+                console.log(transformedLunches);
                 return transformedLunches;
             })
             .catch((error: Response) => Observable.throw(error.json()));

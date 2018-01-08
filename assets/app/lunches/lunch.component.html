@@ -1,13 +1,13 @@
 <li class="list-group-item">
                 <label class="label label-primary" for="locationName">Description du lieu </label>
-                <span id="locationName">{{lunch.locationName}} </span>
+                <div id="locationName">{{lunch.locationName}} </div>
                 <label class="label label-primary" for="userHost">Proposé par </label>
-                <span id="userHost">{{lunch.userHost}} </span>
+                <div id="userHost">{{lunch.userHost}} </div>
                 <label class="label label-primary" for="remainingPlaces">Places restantes </label>
-                <span id="remainingPlaces">{{lunch.remainingPlaces}} </span>
+                <div id="remainingPlaces">{{lunch.remainingPlaces}} </div>
                 <span *ngIf="lunch.distance !==null" class="badge" id="distance">
                     <span *ngIf="lunch.distance > 1">{{lunch.distance | round}} km</span>
-                    <span *ngIf="lunch.distance < 1">{{(lunch.distance * 1000) | round}} mètres</span> 
+                    <span *ngIf="lunch.distance < 1">{{(lunch.distance * 1000) | round}} m</span> 
                 </span>
 
 </li>

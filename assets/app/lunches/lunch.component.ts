@@ -1,6 +1,5 @@
 import {Component, Input, AfterViewInit} from '@angular/core';
 import { Lunch } from "./lunch.model";
-import { HaversineService, GeoCoord } from "ng2-haversine";
 
 @Component({
     selector:'display-lunch',
@@ -8,7 +7,6 @@ import { HaversineService, GeoCoord } from "ng2-haversine";
     styleUrls: ['./lunch.component.css']
 })
 export class LunchComponent{
-    constructor(private haversineService: HaversineService){}
     @Input() lunch: Lunch; 
 
 

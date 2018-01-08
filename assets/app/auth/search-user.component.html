@@ -1,0 +1,10 @@
+<button type="button" class="btn btn-primary" (click)="onSortByDistance()">Trier par distance 
+    <span *ngIf="alreadySortedDistance" class="glyphicon glyphicon-chevron-down"> (décroissant)</span>
+    <span *ngIf="alreadySortedDistance == false" class="glyphicon glyphicon-chevron-up"> (croissant)</span>
+</button>
+
+<div>
+    <ul class="list-group">
+    <display-user  [user]="user" *ngFor="let user of users"></display-user>
+    </ul>
+</div>

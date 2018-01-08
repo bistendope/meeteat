@@ -1,0 +1,10 @@
+<li class="list-group-item">
+    <label class="label label-primary" for="firstName">Prénom </label>
+    <div id="firstName">{{user.firstName}} </div>
+    <span *ngIf="user.distance" class="badge" id="distance">
+        <span *ngIf="user.distance > 1">{{user.distance | round}} km</span>
+        <span *ngIf="user.distance < 1">{{(user.distance * 1000) | round}} m</span> 
+    </span>
+    <span *ngIf="user.distance == null" class="badge" id="distance">Pas de distance à afficher !</span>
+
+</li>

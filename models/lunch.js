@@ -7,7 +7,6 @@ var schema = new Schema({
     longitude: {type: Number, required: true},
     locationName: {type: String, required: true},
     userHost: {type: Schema.Types.ObjectId, ref: 'User', required: true},
-    userHostName:{type: String},
     remainingPlaces: {type: Number, required: true},
     guests: [{type: Schema.Types.ObjectId, ref: 'User'}]
 },{collection: 'lunches'});

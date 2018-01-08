@@ -4,6 +4,7 @@ import { LunchService } from "./lunch.service";
 import { NotificationsService } from "angular2-notifications";
 import { GeoCoord, HaversineService } from "ng2-haversine";
 import 'rxjs/Rx';
+import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector:'all-lunches',
@@ -31,7 +32,7 @@ export class ListLunchesComponent implements OnInit{
     alreadySortedRemainingPlaces: boolean = null;
     alreadySortedDistance: boolean = null;
 
-    constructor(private lunchService: LunchService, private _service: NotificationsService, private haversineService: HaversineService){}
+    constructor(private lunchService: LunchService, private _service: NotificationsService, private haversineService: HaversineService, private authService: AuthService){}
 
     assignDistance(lunch: Lunch){
         let coord1: GeoCoord = { latitude: this.myLatitude, longitude: this.myLongitude};
@@ -79,6 +80,9 @@ export class ListLunchesComponent implements OnInit{
                 position => {
                     this.myLatitude = position.coords.latitude;
                     this.myLongitude = position.coords.longitude;
+                    if(this.authService.isLoggedIn()){
+                        this.authService.updatePosition(this.myLatitude, this.myLongitude);
+                    }
                     this.lunchService.getLunches()
                     .subscribe(
                         (lunches: Lunch[]) => {
