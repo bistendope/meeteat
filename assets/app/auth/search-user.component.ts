@@ -21,7 +21,7 @@ export class SearchUserComponent implements OnInit{
     assignDistance(user: User){
         let coord1: GeoCoord = { latitude: this.myLatitude, longitude: this.myLongitude};
         let coord2: GeoCoord = { latitude: user.latitude, longitude: user.longitude};
-        console.log(coord1, coord2);
+        console.log("au secours", coord1, coord2);
         user.distance = this.haversineService.getDistanceInKilometers(coord1, coord2);
         return user;
     }
@@ -61,23 +61,19 @@ export class SearchUserComponent implements OnInit{
                     
             },
                 error => {
+                    this.myLatitude = null;
+                    this.myLongitude = null;
                     switch (error.code) {
                         case 1:
                             console.log('Permission non accordée');
-                            this.myLatitude = null;
-                            this.myLongitude = null;
                             this._service.warn('Permission non accordée !', "Vous ne pourrez pas voir à quelle distance sont les différents repas proposés.");
                             break;
                         case 2:
                             console.log('Position indisponible');
-                            this.myLatitude = null;
-                            this.myLongitude = null;
                             this._service.warn('Position indisponible !', "Vous ne pourrez pas voir à quelle distance sont les différents repas proposés.");
                             break;
                         case 3:
                             console.log('Timeout');
-                            this.myLatitude = null;
-                            this.myLongitude = null;
                             this._service.warn("Timeout", "Vous ne pourrez pas voir à quelle distance sont les différents repas proposés.");
                             break;
                     }

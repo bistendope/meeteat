@@ -19,6 +19,16 @@ export class LunchService{
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    subscribeLunch(lunch: Lunch){
+        const body = JSON.stringify(lunch);
+        console.log("body", body);
+        const headers = new Headers({'Content-Type':'application/json'});
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token'):''; // à copier pour tous les endroits ou on veut envoyer un token dans la requete
+        return this.http.post("http://localhost:3000/lunch/subscribe" + token, body, {headers: headers})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
     getLunches(){
         return this.http.get('http://localhost:3000/lunch')
             .map((response: Response) => {
@@ -31,7 +41,11 @@ export class LunchService{
                         lunch.longitude,
                         lunch.locationName,
                         lunch.remainingPlaces,
-                        lunch.userHost.firstName
+                        lunch.userHost.firstName,
+                        lunch.userHost._id,
+                        lunch._id,
+                        null,
+                        lunch.guests
                     ));
                 }
                 this.lunches = transformedLunches;

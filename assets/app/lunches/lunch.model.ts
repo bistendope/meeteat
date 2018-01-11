@@ -8,6 +8,7 @@ export class Lunch {
         public remainingPlaces: number,
         public userHost?: string,
         public userId?: string,
+        public lunchId?: string,
         public distance?: number,
         public guests?: User[]
         

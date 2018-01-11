@@ -29,7 +29,7 @@ export class AddLunchComponent implements OnInit{
                     this.latitude = position.coords.latitude;
                     this.longitude = position.coords.longitude;
                     if(this.authService.isLoggedIn()){
-                        this.authService.updatePosition(this.latitude, this.longitude);
+                        this.authService.updatePosition(this.latitude, this.longitude).subscribe(response => console.log(response));
                     }
             },
                 error => {

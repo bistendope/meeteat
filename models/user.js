@@ -9,7 +9,8 @@ var schema = new Schema({
     lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    lunches: [{type: Schema.Types.ObjectId, ref: 'Lunch'}]
+    lunches: [{type: Schema.Types.ObjectId, ref: 'Lunch'}],
+    subscribedLunches: [{type: Schema.Types.ObjectId, ref: 'Lunch'}]
 },
 { usePushEach: true });
 

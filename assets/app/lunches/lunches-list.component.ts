@@ -8,21 +8,7 @@ import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector:'all-lunches',
-    template: `
-<button type="button" class="btn btn-primary" (click)="onSortByDistance()">Trier par distance 
-    <span *ngIf="alreadySortedDistance" class="glyphicon glyphicon-chevron-down"></span>
-    <span *ngIf="alreadySortedDistance == false" class="glyphicon glyphicon-chevron-up"></span>
-</button>
-<button type="button" class="btn btn-primary" (click)="onSortByRemainingPlaces()">Trier par nombre de places restantes
-    <span *ngIf="alreadySortedRemainingPlaces" class="glyphicon glyphicon-chevron-down"></span>
-    <span *ngIf="alreadySortedRemainingPlaces == false" class="glyphicon glyphicon-chevron-up"></span>
-</button>
-<div>
-    <ul class="list-group">
-    <display-lunch  [lunch]="lunch" *ngFor="let lunch of lunches"></display-lunch>
-    </ul>
-</div>
-`
+    templateUrl: 'lunches-list.component.html'
 
 })
 export class ListLunchesComponent implements OnInit{
@@ -88,28 +74,25 @@ export class ListLunchesComponent implements OnInit{
                         (lunches: Lunch[]) => {
                             this.lunches = lunches;
                             this.lunches.map(lunch => lunch = this.assignDistance(lunch));
+                            console.log(this.lunches);
                         }
                 );
                     
             },
                 error => {
+                    this.myLatitude = null;
+                    this.myLongitude = null;
                     switch (error.code) {
                         case 1:
                             console.log('Permission non accordée');
-                            this.myLatitude = null;
-                            this.myLongitude = null;
                             this._service.warn('Permission non accordée !', "Vous ne pourrez pas voir à quelle distance sont les différents repas proposés.");
                             break;
                         case 2:
                             console.log('Position indisponible');
-                            this.myLatitude = null;
-                            this.myLongitude = null;
                             this._service.warn('Position indisponible !', "Vous ne pourrez pas voir à quelle distance sont les différents repas proposés.");
                             break;
                         case 3:
                             console.log('Timeout');
-                            this.myLatitude = null;
-                            this.myLongitude = null;
                             this._service.warn("Timeout", "Vous ne pourrez pas voir à quelle distance sont les différents repas proposés.");
                             break;
                     }

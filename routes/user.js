@@ -22,6 +22,7 @@ router.get('/', function(req, res, next){
         });
 }); 
 
+
 router.post('/', function(req, res, next) {
   var user =  new User({
     firstName: req.body.firstName,
@@ -63,7 +64,7 @@ router.post('/position', function(req, res, next){
             
             res.status(201).json({
                 message: 'Position de l\'utilisateur modifiée !',
-                obj: result
+                obj: user
             });
         });
     });
@@ -95,6 +96,44 @@ router.post('/signin', function(req, res, next){
             message: 'Identification réussie !',
             token: token,
             userId: user._id
+        });
+    });
+});
+
+router.post('/invite', function(req, res, next){ // pas encore fonctionnelle
+    
+    var decoded = jwt.decode(req.query.token);
+    
+    User.findById(decoded.user._id, function(err, user){
+        if(err){
+            return res.status(500).json({
+                title: 'Une erreur est survenue...',
+                error: err
+            });
+        }
+        Lunch.findById(req.body.lunchId, function(err, lunch){
+            if(err){
+                return res.status(500).json({
+                    title: 'Une erreur est survenue...',
+                    error: err
+                });
+            }
+            try{
+            user.subscribedLunches.push(req.body.lunchId);
+            user.save();
+            lunch.guests.push(user._id);
+            lunch.save();
+        }catch(e){
+            return res.status(500).json({
+                title: 'Une erreur est survenue...',
+                error: e
+            });
+        }
+            return res.status(201).json({
+                message: 'Inscription de l\'utilisateur au repas prise en compte',
+                obj: lunch
+
+            });
         });
     });
 });

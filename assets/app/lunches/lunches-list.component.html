@@ -1,0 +1,13 @@
+<button type="button" class="btn btn-primary" (click)="onSortByDistance()">Trier par distance 
+    <span *ngIf="alreadySortedDistance" class="glyphicon glyphicon-chevron-down"></span>
+    <span *ngIf="alreadySortedDistance == false" class="glyphicon glyphicon-chevron-up"></span>
+</button>
+<button type="button" class="btn btn-primary" (click)="onSortByRemainingPlaces()">Trier par nombre de places restantes
+    <span *ngIf="alreadySortedRemainingPlaces" class="glyphicon glyphicon-chevron-down"></span>
+    <span *ngIf="alreadySortedRemainingPlaces == false" class="glyphicon glyphicon-chevron-up"></span>
+</button>
+<div>
+    <ul class="list-group">
+    <display-lunch  [lunch]="lunch" *ngFor="let lunch of lunches"></display-lunch>
+    </ul>
+</div>

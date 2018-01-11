@@ -1,13 +1,15 @@
 <li class="list-group-item">
-                <label class="label label-primary" for="locationName">Description du lieu </label>
-                <div id="locationName">{{lunch.locationName}} </div>
-                <label class="label label-primary" for="userHost">Proposé par </label>
+                <label class="label label-primary" for="locationName">Description du lieu</label>
+                <div><span id="locationName">{{lunch.locationName}} 
+                <button class="btn btn-primary" id="subscribeLunch" (click)="subscribeLunch()" [disabled]="lunch.remainingPlaces < 1 || alreadySubscribed">Réserver une place</button></span></div>
+                
+                <label class="label label-primary" for="userHost">Proposé par</label>
                 <div id="userHost">{{lunch.userHost}} </div>
-                <label class="label label-primary" for="remainingPlaces">Places restantes </label>
+                <label class="label label-primary" for="remainingPlaces">Places restantes</label>
                 <div id="remainingPlaces">{{lunch.remainingPlaces}} </div>
+                <hr>
                 <span *ngIf="lunch.distance !==null" class="badge" id="distance">
                     <span *ngIf="lunch.distance > 1">{{lunch.distance | round}} km</span>
                     <span *ngIf="lunch.distance < 1">{{(lunch.distance * 1000) | round}} m</span> 
                 </span>
-
 </li>
