@@ -9,7 +9,7 @@ var schema = new Schema({
     userHost: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     remainingPlaces: {type: Number, required: true},
     guests: [{type: Schema.Types.ObjectId, ref: 'User'}]
-},{collection: 'lunches'});
+},{ usePushEach: true },{collection: 'lunches'});
 
 // schema.post('remove'), function (lunch){
 //     User.findById(lunch.user, function(err, user){
